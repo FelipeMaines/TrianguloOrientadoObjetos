@@ -12,13 +12,15 @@ namespace TrianguloOrientadoObjetos.ConsoleAPP
         public int lado1;
         public int lado2;
         public int lado3;
-        public bool podeSerTringulo = false;
+        public bool podeSerTringulo = true;
+        public bool isoceles , equilatero, escaleno;
         
-       public void VerificarSePodeSerTrinagulo()
+        
+       public bool VerificarSePodeSerTrinagulo()
         {
             if (lado1 + lado2 < lado3 || lado2 + lado3 < lado1 || lado3 + lado1 < lado2)
             {
-                Console.WriteLine("Nao pode ser um triangulo"); 
+                return false;
                 
             }
 
@@ -26,29 +28,33 @@ namespace TrianguloOrientadoObjetos.ConsoleAPP
             {
                 podeSerTringulo = true;
                 VerificarTipoTriangulo();
-                
+                return true;
             }
         }
 
-        public void VerificarTipoTriangulo()
+        public bool VerificarTipoTriangulo()
         {
             if (podeSerTringulo)
             {
                 if(lado1 != lado2 && lado2 != lado3)
                 {
-                    Console.WriteLine("Eh um Trinagulo Escaleno"); 
+                   escaleno = true;
+                    return escaleno;
                 }
 
                 else if (lado1 == lado2 && lado2 == lado3)
                 {
-                    Console.WriteLine("Eh um tringulo Equilatero");
+                    equilatero = true;
+                    return equilatero;
                 }
 
                 else if (lado1 == lado2 && lado2 != lado3 || lado2 == lado3 && lado2 != lado1 || lado1 == lado3 && lado3 != lado2)
                 {
-                    Console.WriteLine("Eh um triangulo Isoceles");
+                   isoceles = true;
+                    return isoceles;
                 }
             }
+            return false;
         }
     }
 }
